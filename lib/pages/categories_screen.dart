@@ -1,9 +1,12 @@
+import 'package:catalog/main.dart';
 import 'package:catalog/pages/home.dart';
+import 'package:catalog/provider/cardItemCountProvider.dart';
 import 'package:catalog/widgets/appbar.dart';
 import 'package:catalog/widgets/card_drawer.dart';
 import 'package:catalog/widgets/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Categoris extends StatefulWidget {
   const Categoris({super.key});
@@ -17,9 +20,14 @@ class _CategorisState extends State<Categoris> {
       FirebaseFirestore.instance.collection("categories").snapshots();
 
   @override
+  void initState() {
+    super.initState();
+    context.read<CountItemOfCardProvider>().getCardCountIntoSP();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key: _scafflodKey,
       appBar: MyAppBar(),
       body: Container(
         color: const Color.fromARGB(179, 235, 226, 226),

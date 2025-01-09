@@ -10,26 +10,29 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      title: const Center(
-        child: Text(
-          "Catalog",
-          style: TextStyle(
-              fontWeight: FontWeight.w500,
-              letterSpacing: 1.5,
-              shadows: [
-                Shadow(
-                  offset: Offset(2.0, 2.0),
-                  blurRadius: 2.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
-                Shadow(
-                  offset: Offset(2.0, 2.0),
-                  blurRadius: 0.0,
-                  color: Color.fromARGB(121, 209, 209, 219),
-                ),
-              ]),
-        ),
+      backgroundColor: const Color.fromARGB(255, 226, 223, 223),
+      title: const Text(
+        "Catalog",
+        style: TextStyle(
+            fontWeight: FontWeight.w500,
+            letterSpacing: 1.5,
+            shadows: [
+              Shadow(
+                offset: Offset(2.0, 2.0),
+                blurRadius: 2.0,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+              Shadow(
+                offset: Offset(2.0, 2.0),
+                blurRadius: 0.0,
+                color: Color.fromARGB(121, 245, 211, 229),
+              ),
+            ]),
+      ),
+      centerTitle: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(25), bottomLeft: Radius.circular(25)),
       ),
       actions: [
         Stack(

@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CountItemOfCardProvider extends ChangeNotifier {
   int _CardItemCount = 0;
 
-  int getCartItemCount() => _CardItemCount;
+  static const CARDKEY = 'cardCount';
 
-  void setCardItemCount() {
-    // _CardItemCount = ItemCountValu;
-    _CardItemCount++;
+  int getCartItemCount() => _CardItemCount;
+  void getCardCountIntoSP() async {
+    var pref = await SharedPreferences.getInstance();
+    _CardItemCount = pref.getInt(CARDKEY)!;
     notifyListeners();
   }
 
-  void removeCardItemCount() {
-    if (_CardItemCount > 0) {
-      _CardItemCount--;
-      notifyListeners();
-    }
+  void setCardItemCount(int qlty) async {
+    _CardItemCount += qlty;
+    var pref = await SharedPreferences.getInstance();
+    pref.setInt(CARDKEY, _CardItemCount);
+    notifyListeners();
+  }
+
+  void removeCardItemCount(int qlty) async {
+    _CardItemCount -= qlty;
+    var pref = await SharedPreferences.getInstance();
+    pref.setInt(CARDKEY, _CardItemCount);
+    notifyListeners();
   }
 }

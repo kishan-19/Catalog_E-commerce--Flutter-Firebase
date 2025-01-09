@@ -51,10 +51,10 @@ class _CardDrawerState extends State<CardDrawer> {
     }
   }
 
-  void deleteCardItem(String docid) async {
+  void deleteCardItem(String docid, int qtly) async {
     try {
       _collectionref.doc(docid).delete().then((value) {
-        context.read<CountItemOfCardProvider>().removeCardItemCount();
+        context.read<CountItemOfCardProvider>().removeCardItemCount(qtly);
         Util().toastMessage("remove card item");
       }).onError((e, StackTrace) {
         Util().toastMessage(e.toString());
@@ -133,7 +133,8 @@ class _CardDrawerState extends State<CardDrawer> {
                             ),
                             trailing: InkWell(
                               onTap: () {
-                                deleteCardItem(_cardData?[index]['Id']);
+                                deleteCardItem(_cardData?[index]['Id'],
+                                    _cardData?[index]['Quality']);
                                 // Scaffold.of(context).closeEndDrawer();
                                 // Scaffold.of(context).openEndDrawer();
                               },
@@ -249,7 +250,9 @@ class PlaceOrderBtn extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Util().toastMessage("Payment Process comming soon...");
+          },
           style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll<Color>(Colors.blue),
               shape: WidgetStatePropertyAll<RoundedRectangleBorder>(

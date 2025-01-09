@@ -185,7 +185,7 @@ class _pDetaileState extends State<pDetaile> {
           "ImageURL": imgURL,
           "Quality": quality
         }).then((value) {
-          context.read<CountItemOfCardProvider>().setCardItemCount();
+          context.read<CountItemOfCardProvider>().setCardItemCount(quality);
           Util().toastMessage("Add to card successfully");
         }).onError((e, StackTrace) {
           Util().toastMessage(e.toString());
