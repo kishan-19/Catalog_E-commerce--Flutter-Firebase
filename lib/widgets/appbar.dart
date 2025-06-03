@@ -1,8 +1,11 @@
-import 'package:catalog/provider/cardItemCountProvider.dart';
+import 'package:catalog/provider/cardItemCountController.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Carditemacountcontroller cardItemController =
+      Get.put(Carditemacountcontroller());
   @override
   final Size preferredSize;
   MyAppBar({super.key}) : preferredSize = const Size.fromHeight(kToolbarHeight);
@@ -48,21 +51,30 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   top: 0,
                   right: 9,
                   child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Consumer<CountItemOfCardProvider>(
-                          builder: (ctx, Provider, __) {
-                        return Text(
-                          '${Provider.getCartItemCount()}',
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                    // child: Consumer<CountItemOfCardProvider>(
+                    //     builder: (ctx, Provider, __) {
+                    //   return Text(
+                    //     '${Provider.getCartItemCount()}',
+                    //     style: const TextStyle(
+                    //       color: Colors.white,
+                    //       fontSize: 13,
+                    //     ),
+                    //   );
+                    // }
+                    // )
+                    child: Obx(() => Text(
+                          "${cardItemController.CardItemCount}",
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 13,
                           ),
-                        );
-                      })))
+                        )),
+                  ))
           ],
         )
       ],

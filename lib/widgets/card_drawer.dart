@@ -1,9 +1,10 @@
 import 'package:catalog/pages/categories_screen.dart';
-import 'package:catalog/provider/cardItemCountProvider.dart';
+import 'package:catalog/provider/cardItemCountController.dart';
 import 'package:catalog/utils/util.dart';
 import 'package:catalog/widgets/appbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class CardDrawer extends StatefulWidget {
@@ -23,6 +24,8 @@ class _CardDrawerState extends State<CardDrawer> {
   // final _firestore = FirebaseFirestore.instance;
   final CollectionReference _collectionref =
       FirebaseFirestore.instance.collection('cardCatalog');
+  final Carditemacountcontroller cardItemController =
+      Get.put(Carditemacountcontroller());
   @override
   void initState() {
     super.initState();
@@ -54,7 +57,8 @@ class _CardDrawerState extends State<CardDrawer> {
   void deleteCardItem(String docid, int qtly) async {
     try {
       _collectionref.doc(docid).delete().then((value) {
-        context.read<CountItemOfCardProvider>().removeCardItemCount(qtly);
+        // context.read<CountItemOfCardProvider>().removeCardItemCount(qtly);
+        cardItemController.removeCardItema(qtly);
         Util().toastMessage("remove card item");
       }).onError((e, StackTrace) {
         Util().toastMessage(e.toString());

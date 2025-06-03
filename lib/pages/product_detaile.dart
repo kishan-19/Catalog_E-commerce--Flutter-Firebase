@@ -1,10 +1,11 @@
-import 'package:catalog/provider/cardItemCountProvider.dart';
+import 'package:catalog/provider/cardItemCountController.dart';
 import 'package:catalog/utils/util.dart';
 import 'package:catalog/widgets/appbar.dart';
 import 'package:catalog/widgets/card_drawer.dart';
 import 'package:catalog/provider/counterProvider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class pDetaile extends StatefulWidget {
@@ -23,6 +24,8 @@ int? __qlty;
 class _pDetaileState extends State<pDetaile> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool loading = false;
+  final Carditemacountcontroller cardItemController =
+      Get.put(Carditemacountcontroller());
   @override
   void initState() {
     super.initState();
@@ -185,7 +188,8 @@ class _pDetaileState extends State<pDetaile> {
           "ImageURL": imgURL,
           "Quality": quality
         }).then((value) {
-          context.read<CountItemOfCardProvider>().setCardItemCount(quality);
+          // context.read<CountItemOfCardProvider>().setCardItemCount(quality);
+          cardItemController.setCardItema(quality);
           Util().toastMessage("Add to card successfully");
         }).onError((e, StackTrace) {
           Util().toastMessage(e.toString());

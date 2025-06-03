@@ -2,7 +2,6 @@ import 'package:catalog/pages/home.dart';
 import 'package:catalog/pages/login.dart';
 import 'package:catalog/pages/product_detaile.dart';
 import 'package:catalog/pages/splash_screen.dart';
-import 'package:catalog/provider/cardItemCountProvider.dart';
 import 'package:catalog/provider/counterProvider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => CounterProvider()),
-    ChangeNotifierProvider(create: (context) => CountItemOfCardProvider()),
+    // ChangeNotifierProvider(create: (context) => CountItemOfCardProvider()),
   ], child: MyApp()));
 }
 
