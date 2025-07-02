@@ -40,7 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
         loading = false;
       });
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Categoris()));
+          context, MaterialPageRoute(builder: (context) => Categoris(userName:emailController.text)));
     }).onError((error, StackTrace) {
       Util().toastMessage(error.toString());
       setState(() {

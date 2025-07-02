@@ -10,7 +10,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class Categoris extends StatefulWidget {
-  const Categoris({super.key});
+  String? userName;
+   Categoris({super.key, this.userName});
 
   @override
   State<Categoris> createState() => _CategorisState();
@@ -95,7 +96,7 @@ class _CategorisState extends State<Categoris> {
         ),
       ),
       endDrawer: CardDrawer(),
-      drawer: ProfileDrawer(),
+      drawer: ProfileDrawer(userName: widget.userName),
     );
   }
 }

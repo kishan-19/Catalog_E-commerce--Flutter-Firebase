@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           loading = false;
         });
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Categoris()));
+            context, MaterialPageRoute(builder: (context) => Categoris(userName:emailController.text)));
       }).onError((error, StackTrace) {
         Util().toastMessage(error.toString());
         setState(() {

@@ -17,14 +17,19 @@ class _splash_screenState extends State<splash_screen> {
   void initState() {
     super.initState();
     final _auth = FirebaseAuth.instance;
-    final user = _auth.currentUser;
+    final User? user = _auth.currentUser;
 
     if (user != null) {
+      // String username = _auth.currentUser?.email
+      //     ?.split('@')
+      //     .first
+      //     .replaceAll(RegExp(r'[^a-zA-Z]'), '') ?? '';
+      // print("user into--- $username");
       Timer(
         Duration(seconds: 2),
         () {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Categoris()));
+              context, MaterialPageRoute(builder: (context) => Categoris(userName: _auth.currentUser?.email)));
         },
       );
     } else {

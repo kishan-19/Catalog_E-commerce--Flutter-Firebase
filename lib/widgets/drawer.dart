@@ -7,7 +7,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDrawer extends StatelessWidget {
-  ProfileDrawer({super.key});
+  String? userName;
+  ProfileDrawer({super.key,this.userName});
+
+  // String Name = userName?.split('@')
+  //     .first
+  //     .replaceAll(RegExp(r'[^a-zA-Z]'), '') ?? '';
   final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -16,12 +21,14 @@ class ProfileDrawer extends StatelessWidget {
         color: Colors.deepPurple,
         child: ListView(
           children: [
-            const DrawerHeader(
+             DrawerHeader(
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
                 margin: EdgeInsets.zero,
-                accountName: Text("hii, kishan"),
-                accountEmail: Text("kishanrupala88@gmail.com"),
+                accountName: Text("hii, ${userName?.split('@')
+                    .first
+                    .replaceAll(RegExp(r'[^a-zA-Z]'), '') ?? 'Not Found'}"),
+                accountEmail: Text(userName.toString()),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage("assets/images/about.jpg"),
                 ),
